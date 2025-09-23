@@ -1,30 +1,41 @@
 #include <stdio.h>
- 
-int main() {
- int i;
-    int matriz[10][10] = {
-        {3,0,0,0,0,0,0,0,0,0},
-        {3,0,0,0,0,0,0,0,0,0},
-        {3,0,0,0,0,0,0,3,0,0},
-        {0,0,0,0,0,0,3,0,0,0},
-        {0,0,0,0,0,3,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,3,3,3,0,0,0,0},
-        {0,0,0,0,0,0,0,3,0,0},
-        {0,0,0,0,0,0,0,0,3,0},
-        {0,0,0,0,0,0,0,0,0,3},
-      };
-      for(i=0;i<10;i++){
- printf("%d",matriz[i][0]);
- printf("%d",matriz[i][1]);
- printf("%d",matriz[i][2]);
- printf("%d",matriz[i][3]);
- printf("%d",matriz[i][4]);
- printf("%d",matriz[i][5]);
- printf("%d",matriz[i][6]);
- printf("%d",matriz[i][7]);
- printf("%d",matriz[i][8]);
- printf("%d\n",matriz[i][9]);
 
-      }
-return 0;}
+int main() {
+    int i, j;
+    int tabuleiro[10][10];
+
+    // Inicializa o tabuleiro com água (0)
+    for(i=0;i<10;i++){
+        for(j=0;j<10;j++){
+            tabuleiro[i][j] = 0;
+        }
+    }
+
+    // CRUZ
+    // Vamos colocar a cruz no centro (linhas 4 a 6, colunas 4 a 6)
+    for(i=3;i<=7;i++){
+        tabuleiro[i][5] = 3; // coluna do meio
+        tabuleiro[5][i] = 3; // linha do meio
+    }
+
+    //  CONE 
+    // Vamos colocar o cone no canto inferior direito (linhas 7 a 9, colunas 7 a 9)
+    tabuleiro[7][8] = 3;            // topo do cone
+    tabuleiro[8][7] = tabuleiro[8][8] = tabuleiro[8][9] = 3; // base do cone
+    
+    //  OCTAEDRO 
+    //  octaedro no canto superior esquerdo (linhas 1 a 3, colunas 1 a 3)
+    tabuleiro[1][2] = 3;            // topo
+    tabuleiro[2][1] = tabuleiro[2][2] = tabuleiro[2][3] = 3; // linha do meio
+    tabuleiro[3][2] = 3;            // base
+
+    //  Imprime o tabuleiro 
+    for(i=0;i<10;i++){
+        for(j=0;j<10;j++){
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
